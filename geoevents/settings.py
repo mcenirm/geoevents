@@ -230,6 +230,8 @@ INSTALLED_APPS = (
     'compressor',
     'geoevents.classification',
     'filer',
+    'mptt',
+    'easy_thumbnails',
 
 )
 
@@ -287,6 +289,10 @@ LOGGING = {
         #     'level': 'INFO',
         # }
     }
+}
+
+SOUTH_MIGRATION_MODULES = {
+    'easy_thumbnails': 'easy_thumbnails.south_migrations',
 }
 
 
