@@ -10,7 +10,7 @@ from geoevents.maps.models import Layer, Map
 
 @override_settings(AUTHENTICATION_BACKENDS=('django.contrib.auth.backends.ModelBackend',))
 class SimpleTest(R3TestCaseMixin, TestCase):
-    fixtures = ['maps.json']
+    fixtures = ['maps.map.json']
 
     def setUp(self):
         super(SimpleTest, self).setUp()

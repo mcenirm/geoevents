@@ -15,7 +15,7 @@ from geoevents.feedback.models import Article, Category
 @override_settings(AUTHENTICATION_BACKENDS=('django.contrib.auth.backends.ModelBackend',))
 @override_settings(EMAIL_BACKEND='django.core.mail.backends.locmem.EmailBackend')
 class FeedbackTest(R3TestCaseMixin, TestCase):
-    fixtures = ['maps.json']
+    fixtures = ['maps.map.json']
 
     def setUp(self):
         super(FeedbackTest, self).setUp()

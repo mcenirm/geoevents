@@ -59,7 +59,7 @@ class SimpleTest(R3TestCaseMixin, TestCase):
     """
     Tests site wide views and core functionality.
     """
-    fixtures = ['initial_data_hold.json', 'maps.json']
+    fixtures = ['initial_data_hold.json', 'maps.map.json']
 
     def setUp(self):
         super(SimpleTest, self).setUp()
@@ -150,7 +150,7 @@ class CoreAPITests(R3TestCaseMixin, TestCase):
     """
     #TODO: abstract this class so user can provide any API and it will test common functionality
 
-    fixtures = ['maps.json']
+    fixtures = ['maps.map.json']
 
     def setUp(self):
         super(CoreAPITests, self).setUp()

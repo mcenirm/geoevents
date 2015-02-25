@@ -23,7 +23,7 @@ from geoevents.operations.models import Deployment, Event, LessonLearned, Lesson
 
 @override_settings(AUTHENTICATION_BACKENDS=('django.contrib.auth.backends.ModelBackend',))
 class SimpleTest(R3TestCaseMixin, TestCase):
-    fixtures = ['maps.json']
+    fixtures = ['maps.map.json']
 
     def setUp(self):
         super(SimpleTest, self).setUp()

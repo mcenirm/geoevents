@@ -17,7 +17,7 @@ from geoevents.maps.models import Layer
 
 
 class SimpleTest(R3TestCaseMixin, TestCase):
-    fixtures = ['maps.json']
+    fixtures = ['maps.map.json']
 
     def setUp(self):
         super(SimpleTest, self).setUp()
