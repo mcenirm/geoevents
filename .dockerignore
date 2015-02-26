@@ -1,0 +1,7 @@
+.dockerignore
+.git
+.gitignore
+LICENSE
+README.md
+fig.yml
+db-docker
