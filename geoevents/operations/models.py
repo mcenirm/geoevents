@@ -266,6 +266,19 @@ class EventTypes():
     types = {'event_types': [i for i, j in DISASTER_TYPES]}
 
 
+def validate_filedropoff_path(value):
+    """
+    Validate that filedropoff_path value is under EVENT_FILE_DROPOFF_ROOT
+    """
+    from django.core.exceptions import ValidationError
+
+    try:
+        return safe_join(settings.EVENT_FILE_DROPOFF_ROOT, value)
+    except ValueError:
+        raise ValidationError(
+            'Suspicious operation.  The EVENT_FILE_DROPOFF_ROOT path in settings.py must be within the filedropoff path.')
+
+
 class Event(models.Model):
     """
     Model for 'incident' type events.
@@ -303,6 +316,7 @@ class Event(models.Model):
     geowidgets = models.ManyToManyField(GeoWidget, null=True, blank=True, help_text="Related GeoWidgets",
                                         verbose_name="geowidgets")
     filedropoff_path = models.CharField(max_length=200, null=True, blank=True,
+                                        validators=[validate_filedropoff_path],
                                         help_text="Advanced - Path to folder within AjaxExplorer Shared directory of files to show - must be in /cache/ajaxplorer/files")
     point = models.PointField(null=True, blank=True)
 
@@ -338,14 +352,8 @@ class Event(models.Model):
         return self.name
 
     def clean(self):
-        from django.core.exceptions import ValidationError
-
-        try:
-            if self.filedropoff_path:
-                self.filedropoff_path = safe_join(settings.EVENT_FILE_DROPOFF_ROOT, self.filedropoff_path)
-        except ValueError:
-            raise ValidationError(
-                'Suspicious operation.  The EVENT_FILE_DROPOFF_ROOT path in settings.py must be within the filedropoff path.')
+        if self.filedropoff_path:
+            self.filedropoff_path = validate_filedropoff_path(self.filedropoff_path)
 
     def get_absolute_url(self, lazy=False):
         f = reverse if not lazy else reverse_lazy
