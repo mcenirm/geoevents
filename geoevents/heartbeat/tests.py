@@ -38,7 +38,7 @@ class SimpleTest(R3TestCaseMixin, TestCase):
         """Test if the status page renders."""
         c = Client()
         response = c.get(reverse('heartbeat-view-status'))
-        self.failUnlessEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
 
     def test_known_200(self):
         """Test that a call to a known location returns 200 response."""

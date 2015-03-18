@@ -69,49 +69,49 @@ class SimpleTest(R3TestCaseMixin, TestCase):
         c = Client()
         c.login(username=self.admin_user.username, password='test')
         response = c.get(reverse('user-profile', kwargs={'username': self.admin_user.username}))
-        self.failUnlessEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
 
     def test_view_profile_cac_user(self):
         '''Test if the profile view renders for cac users'''
         c = Client()
         c.login(username='Michael.Smith.Test', password='test')
         response = c.get(reverse('user-profile', kwargs={'username': self.cac_user.username}))
-        self.failUnlessEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
 
     def test_view_profile_crazy_char_user(self):
         '''Test if the profile view renders for cac users'''
         c = Client()
         c.login(username='aA0.-@_ \'', password='test')
         response = c.get(reverse('user-profile', kwargs={'username': self.crazy_char_user.username}))
-        self.failUnlessEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
 
     def test_view_profile_404(self):
         '''Test if the profile view renders a 404 if supplied with non-existent username'''
         c = Client()
         c.login(username='admin_user', password='test')
         response = c.get(reverse('user-profile', kwargs={'username': 'admisdfn'}))
-        self.failUnlessEqual(response.status_code, 404)
+        self.assertEqual(response.status_code, 404)
 
     def test_non_admin_view_profile(self):
         '''Test if a non-admin can view their own user profile'''
         c = Client()
         c.login(username='non_admin', password='test')
         response = c.get(reverse('user-profile', kwargs={'username': self.non_admin_user.username}))
-        self.failUnlessEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
 
     def test_perms_view_profile(self):
         '''Test if the non-admin can view someone else's profile'''
         c = Client()
         c.login(username='non_admin', password='test')
         response = c.get(reverse('user-profile', kwargs={'username': self.admin_user.username}))
-        self.failUnlessEqual(response.status_code, 403)
+        self.assertEqual(response.status_code, 403)
 
     def test_admin_perms_view_profile(self):
         '''Test if the admin can view someone else's profile'''
         c = Client()
         c.login(username='admin', password='test')
         response = c.get(reverse('user-profile', kwargs={'username': self.non_admin_user.username}))
-        self.failUnlessEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
 
     def test_manage_profile(self):
         '''Test if the admin can post to his own profile'''
@@ -119,7 +119,7 @@ class SimpleTest(R3TestCaseMixin, TestCase):
         c.login(username='admin', password='test')
         response = c.post(reverse('user-profile', kwargs={'username': self.admin_user.username}),
                           {'first_name': 'Admin', 'last_name': 'Last', 'email': 'test@aol.com'})
-        self.failUnlessEqual(response.status_code, 302)
+        self.assertEqual(response.status_code, 302)
 
     def test_perms_manage_profile(self):
         '''Test if the admin can post to his own profile'''
@@ -127,16 +127,16 @@ class SimpleTest(R3TestCaseMixin, TestCase):
         c.login(username='non_admin', password='test')
         response = c.post(reverse('user-profile', kwargs={'username': self.admin_user.username}),
                           {'first_name': 'Admin', 'last_name': 'Last', 'email': 'test@aol.com'})
-        self.failUnlessEqual(response.status_code, 403)
+        self.assertEqual(response.status_code, 403)
 
     def test_login_logout(self):
         '''Tests the login/logout views'''
         c = Client()
         response = c.get(reverse('login'))
-        self.failUnlessEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
 
         response = c.get(reverse('logout'))
-        self.failUnlessEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
 
     def tearDown(self):
         self.admin_user.delete()

@@ -29,67 +29,67 @@ class SimpleTest(R3TestCaseMixin, TestCase):
         '''Test if the notes page renders.'''
         c = Client()
         response = c.get(reverse('notes-view-notes'))
-        self.failUnlessEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
 
     def test_note_view_note(self):
         '''Test if an individual note view renders.'''
         c = Client()
         response = c.get(reverse('notes-view-note', args=[self.note.id]))
-        self.failUnlessEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
 
     def test_notes_manage_note(self):
         '''Test if the add new note view works.'''
         c = Client()
         c.login(username='admin', password='test')
         response = c.get(reverse('notes-manage-note'))
-        self.failUnlessEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
 
     def test_perms_notes_manage_note(self):
         '''Test if the add new note view returns 302.'''
         c = Client()
         c.login(username='non_admin', password='test')
         response = c.get(reverse('notes-manage-note'))
-        self.failUnlessEqual(response.status_code, 302)
+        self.assertEqual(response.status_code, 302)
 
     def test_notes_manage_note_id(self):
         '''Test if the add new note view works.'''
         c = Client()
         c.login(username='admin', password='test')
         response = c.get(reverse('notes-manage-note-id', args=[self.note.id]))
-        self.failUnlessEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
 
     def test_perms_notes_manage_note_id(self):
         '''Test if the add new note view returns 302.'''
         c = Client()
         c.login(username='non_admin', password='test')
         response = c.get(reverse('notes-manage-note-id', args=[self.note.id]))
-        self.failUnlessEqual(response.status_code, 302)
+        self.assertEqual(response.status_code, 302)
 
     def test_notes_delete_note_id(self):
         '''Test if the add new note view works.'''
         c = Client()
         c.login(username='admin', password='test')
         response = c.get(reverse('notes-delete-note-id', args=[self.note.id]))
-        self.failUnlessEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
 
     def test_perms_notes_delete_note_id(self):
         '''Test if the delete note view returns 302.'''
         c = Client()
         c.login(username='non_admin', password='test')
         response = c.get(reverse('notes-delete-note-id', args=[self.note.id]))
-        self.failUnlessEqual(response.status_code, 302)
+        self.assertEqual(response.status_code, 302)
 
     def test_perms_notes_manage_model_id(self):
         '''Test if the manage view returns a 302 when model and object_id are provided.'''
         c = Client()
         c.login(username='non_admin', password='test')
         response = c.get(reverse('notes-manage-note-model-id', kwargs={'model': 'user', 'pk': 1}))
-        self.failUnlessEqual(response.status_code, 302)
+        self.assertEqual(response.status_code, 302)
         c.logout()
 
         c.login(username='admin', password='test')
         response = c.get(reverse('notes-manage-note-model-id', kwargs={'model': 'user', 'pk': 1}))
-        self.failUnlessEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
 
     def test_note_create_view(self):
         '''Tests the notes create view.'''
@@ -105,7 +105,7 @@ class SimpleTest(R3TestCaseMixin, TestCase):
                 'object_id': object_id,
         }
         response = c.post(reverse('notes-manage-note'), data=data, follow=True)
-        self.failUnlessEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
 
         n = Note.objects.get(title='Testing')
         self.assertEqual(n.content_type.id, user_table)
@@ -118,7 +118,7 @@ class SimpleTest(R3TestCaseMixin, TestCase):
 
         response = c.post(reverse('notes-manage-note-model-id', kwargs={'model': table_name, 'pk': object_id}),
                           data=data, follow=True)
-        self.failUnlessEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
         n = Note.objects.get(title='Testing')
         self.assertEqual(n.content_type.id, user_table)
         self.assertEqual(n.object_id, object_id)

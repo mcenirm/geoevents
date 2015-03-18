@@ -44,7 +44,7 @@ class FeedbackTest(R3TestCaseMixin, TestCase):
         '''Test if the feedback view renders.'''
         c = Client()
         response = c.get(reverse('add-feedback'))
-        self.failUnlessEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
 
     def test_valid_feedback(self):
         '''Make sure the feedback is valid'''
@@ -55,58 +55,58 @@ class FeedbackTest(R3TestCaseMixin, TestCase):
         '''Test if the feedback view renders.'''
         c = Client()
         response = c.post(reverse('add-feedback'), self.feedback_data)
-        self.failUnlessEqual(response.status_code, 302)
+        self.assertEqual(response.status_code, 302)
 
         ## Verify email is triggered to team and submitter
-        self.failUnlessEqual(len(mail.outbox), 2)
+        self.assertEqual(len(mail.outbox), 2)
 
     def test_post_feedback_no_confirmation(self):
         '''Test that data posts successfully and the submitter is not emailed'''
         c = Client()
         self.feedback_data.pop('send_confirmation_email')
         response = c.post(reverse('add-feedback'), self.feedback_data)
-        self.failUnlessEqual(response.status_code, 302)
+        self.assertEqual(response.status_code, 302)
 
         ## Verify email is triggered to team and submitter
-        self.failUnlessEqual(len(mail.outbox), 1)
+        self.assertEqual(len(mail.outbox), 1)
 
     def test_faqs(self):
         '''Test the FAQs view'''
         c = Client()
         response = c.get(reverse('feedback-faqs'))
-        self.failUnlessEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
 
     def test_perms_faqs_manage_article(self):
         '''Test the manage article view permissions'''
         c = Client()
         response = c.get(reverse('feedback-manage-article'))
-        self.failUnlessEqual(response.status_code, 403)
+        self.assertEqual(response.status_code, 403)
 
     def test_perms_faqs_manage_article_admin(self):
         '''Test the manage article view'''
         c = Client()
         c.login(username=self.admin_user.username, password='test')
         response = c.get(reverse('feedback-manage-article'))
-        self.failUnlessEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
 
     def test_perms_faqs_manage_post_article_admin(self):
         '''Test creating a new article via the web'''
         c = Client()
         c.login(username=self.admin_user.username, password='test')
         response = c.post(reverse('feedback-manage-article'), data=self.article_data)
-        self.failUnlessEqual(response.status_code, 302)
+        self.assertEqual(response.status_code, 302)
 
     def test_faqs_view_category(self):
         '''Test the view category view'''
         c = Client()
         response = c.get(reverse('feedback-view-categories', args=[self.faq_category.id]))
-        self.failUnlessEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
 
     def test_faqs_view_article(self):
         '''Test the view article view'''
         c = Client()
         response = c.get(reverse('feedback-view-article', args=[self.faq.slug]))
-        self.failUnlessEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
 
 
 
