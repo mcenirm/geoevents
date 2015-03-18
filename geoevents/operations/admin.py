@@ -1,9 +1,9 @@
 # This technical data was produced for the U. S. Government under Contract No. W15P7T-13-C-F600, and
 # is subject to the Rights in Technical Data-Noncommercial Items clause at DFARS 252.227-7013 (FEB 2012)
 
-from datetime import datetime
 from django.contrib.contenttypes import generic
 from django.contrib.gis import admin
+import django.utils.timezone
 from geoevents.notes.models import Note
 from geoevents.operations.models import Agency, Event, Deployment, LessonLearned, LessonLearnedCategory, Service, ServiceType, SitRep, GeoWidget
 from geoevents.timeline.models import TimelineItem
@@ -53,7 +53,7 @@ class EventAdmin(admin.OSMGeoAdmin):
         return instance.map.title
 
     def make_inactive(self, request, queryset):
-        rows_updated = queryset.update(status=0, closed=datetime.now(), last_updated=datetime.now())
+        rows_updated = queryset.update(status=0, closed=django.utils.timezone.now(), last_updated=django.utils.timezone.now())
         if rows_updated == 1:
             message_bit = '1 event was'
         else:
@@ -63,7 +63,7 @@ class EventAdmin(admin.OSMGeoAdmin):
     make_inactive.short_description = "Deactivate selected events."
 
     def make_active(self, request, queryset):
-        rows_updated = queryset.update(status=1, last_updated=datetime.now(), closed=None)
+        rows_updated = queryset.update(status=1, last_updated=django.utils.timezone.now(), closed=None)
         if rows_updated == 1:
             message_bit = '1 event was'
         else:

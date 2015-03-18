@@ -1,12 +1,13 @@
 # This technical data was produced for the U. S. Government under Contract No. W15P7T-13-C-F600, and
 # is subject to the Rights in Technical Data-Noncommercial Items clause at DFARS 252.227-7013 (FEB 2012)
 
-from datetime import datetime, timedelta
+from datetime import timedelta
 from django import forms
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.db.models import Q
 from django.utils._os import safe_join
+import django.utils.timezone
 from geoevents.core.forms import StyledModelForm
 from geoevents.maps.models import Map
 from geoevents.operations.models import Service, Event, Deployment, LessonLearned, SitRep
@@ -62,7 +63,7 @@ class LessonLearnedForm(StyledModelForm):
         super(LessonLearnedForm, self).__init__(*args, **kwargs)
 
         self.fields['event'].queryset = Event.objects.filter(
-            Q(closed__gte=datetime.now() + timedelta(days=-90)) | Q(status=1))
+            Q(closed__gte=django.utils.timezone.now() + timedelta(days=-90)) | Q(status=1))
         ## Filter event dropdown to show events closed w/in the last 90 days and active incidents
 
     class Meta:

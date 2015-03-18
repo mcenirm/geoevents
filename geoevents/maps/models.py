@@ -5,8 +5,8 @@
 
 import json
 from django.contrib.gis.db import models
+import django.utils.timezone
 from geoevents.taggit.managers import TaggableManager
-from datetime import datetime
 
 IMAGE_FORMATS = (
     ('image/png', 'image/png'),
@@ -101,7 +101,7 @@ class Layer(models.Model):
         verbose_name="Layer Refresh Rate", blank=True, null=True)
     token = models.CharField(max_length=400, null=True, blank=True,
                              help_text='Authentication token, if required (usually only for secure layer servers)')
-    created_at = models.DateTimeField(default=datetime.now, blank=True)
+    created_at = models.DateTimeField(default=django.utils.timezone.now, blank=True)
     updated_at = models.DateTimeField(auto_now=True, blank=True, null=True)
 
     show_in_table = models.BooleanField(default=True,

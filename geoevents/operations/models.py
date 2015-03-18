@@ -15,6 +15,7 @@ from django.core.urlresolvers import reverse, reverse_lazy
 from django.db.models.signals import post_save
 from django.template.defaultfilters import slugify
 from django.utils._os import safe_join
+import django.utils.timezone
 from django.utils.timezone import utc
 from geoevents.core import disable_for_loaddata, enable_on_object_creation
 from geoevents.maps.models import Map
@@ -81,7 +82,7 @@ class Base(models.Model):
         if self.status == 1 and self.closed:
             self.closed = None
         elif self.status == 0 and self.closed is None:
-            self.closed = datetime.now()
+            self.closed = django.utils.timezone.now()
 
         super(Base, self).save(*args, **kwargs)
 
@@ -430,7 +431,7 @@ class Event(models.Model):
         if self.status == 1 and self.closed:
             self.closed = None
         elif self.status == 0 and self.closed is None:
-            self.closed = datetime.now()
+            self.closed = django.utils.timezone.now()
 
         self.point = Point(float(self.longitude), float(self.latitude))
         self.slug = slugify(self.name)
@@ -501,7 +502,7 @@ class Deployment(models.Model):
         if self.status == 1 and self.closed:
             self.closed = None
         elif self.status == 0 and self.closed is None:
-            self.closed = datetime.now()
+            self.closed = django.utils.timezone.now()
 
         self.point = Point(float(self.longitude), float(self.latitude))
         super(Deployment, self).save(*args, **kwargs)

@@ -1,10 +1,10 @@
 # This technical data was produced for the U. S. Government under Contract No. W15P7T-13-C-F600, and
 # is subject to the Rights in Technical Data-Noncommercial Items clause at DFARS 252.227-7013 (FEB 2012)
 
-from datetime import datetime
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes import generic
 from django.db import models
+import django.utils.timezone
 from geoevents.heartbeat.test_cases import tests, get_test
 from geoevents.notes.models import Note
 
@@ -28,7 +28,7 @@ class Base(models.Model):
         if self.status == 1 and self.closed:
             self.closed = None
         elif self.status == 0 and self.closed is None:
-            self.closed = datetime.now()
+            self.closed = django.utils.timezone.now()
 
         super(Base, self).save(*args, **kwargs)
 

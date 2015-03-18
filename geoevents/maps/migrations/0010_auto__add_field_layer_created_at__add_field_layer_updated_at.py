@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-import datetime
 from south.db import db
 from south.v2 import SchemaMigration
 from django.db import models
+import django.utils.timezone
 
 
 class Migration(SchemaMigration):
@@ -10,12 +10,12 @@ class Migration(SchemaMigration):
     def forwards(self, orm):
         # Adding field 'Layer.created_at'
         db.add_column(u'maps_layer', 'created_at',
-                      self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime.now, blank=True),
+                      self.gf('django.db.models.fields.DateTimeField')(default=django.utils.timezone.now, blank=True),
                       keep_default=False)
 
         # Adding field 'Layer.updated_at'
         db.add_column(u'maps_layer', 'updated_at',
-                      self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime.now, auto_now=True, blank=True),
+                      self.gf('django.db.models.fields.DateTimeField')(default=django.utils.timezone.now, auto_now=True, blank=True),
                       keep_default=False)
 
 
@@ -42,7 +42,7 @@ class Migration(SchemaMigration):
             'attribution': ('django.db.models.fields.CharField', [], {'max_length': '200', 'null': 'True', 'blank': 'True'}),
             'category': ('django.db.models.fields.CharField', [], {'max_length': '50', 'null': 'True', 'blank': 'True'}),
             'constraints': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'}),
-            'created_at': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now', 'blank': 'True'}),
+            'created_at': ('django.db.models.fields.DateTimeField', [], {'default': 'django.utils.timezone.now', 'blank': 'True'}),
             'description': ('django.db.models.fields.TextField', [], {'max_length': '800', 'null': 'True', 'blank': 'True'}),
             'downloadableLink': ('django.db.models.fields.URLField', [], {'max_length': '300', 'null': 'True', 'blank': 'True'}),
             'enable_identify': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
@@ -65,7 +65,7 @@ class Migration(SchemaMigration):
             'token': ('django.db.models.fields.CharField', [], {'max_length': '400', 'null': 'True', 'blank': 'True'}),
             'transparent': ('django.db.models.fields.BooleanField', [], {'default': 'True'}),
             'type': ('django.db.models.fields.CharField', [], {'max_length': '75'}),
-            'updated_at': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now', 'auto_now': 'True', 'blank': 'True'}),
+            'updated_at': ('django.db.models.fields.DateTimeField', [], {'default': 'django.utils.timezone.now', 'auto_now': 'True', 'blank': 'True'}),
             'url': ('django.db.models.fields.URLField', [], {'max_length': '200'})
         },
         u'maps.map': {

@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-import datetime
 from south.db import db
 from south.v2 import SchemaMigration
 from django.db import models
+import django.utils.timezone
 
 
 class Migration(SchemaMigration):
@@ -40,7 +40,7 @@ class Migration(SchemaMigration):
             'attribution': ('django.db.models.fields.CharField', [], {'max_length': '200', 'null': 'True', 'blank': 'True'}),
             'category': ('django.db.models.fields.CharField', [], {'max_length': '50', 'null': 'True', 'blank': 'True'}),
             'constraints': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'}),
-            'created_at': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now', 'blank': 'True'}),
+            'created_at': ('django.db.models.fields.DateTimeField', [], {'default': 'django.utils.timezone.now', 'blank': 'True'}),
             'description': ('django.db.models.fields.TextField', [], {'max_length': '800', 'null': 'True', 'blank': 'True'}),
             'downloadableLink': ('django.db.models.fields.URLField', [], {'max_length': '300', 'null': 'True', 'blank': 'True'}),
             'enable_identify': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
