@@ -6,7 +6,6 @@ from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse, reverse_lazy
 from geoevents.notes.models import Note
 import json
-from django.utils import simplejson
 from django.core import serializers
 from django.contrib.contenttypes.models import ContentType
 from django.db.models import Q
