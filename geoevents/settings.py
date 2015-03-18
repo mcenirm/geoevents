@@ -215,7 +215,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.admindocs',
     'django.contrib.gis',
-    'django.contrib.markup',
+    'django_markdown2',
     'geoevents.maps',
     'geoevents.operations',
     'geoevents.notes',

@@ -1,6 +1,5 @@
 Paver==1.2.4
 Django==1.5.12
-Markdown==2.2.1
 South==0.8.4
 django_tastypie==0.9.16
 psycopg2==2.4.6
@@ -10,3 +9,4 @@ requests==1.1.0
 pytz
 geopy==0.95.1
 django-filer==0.9.9
+django-markdown2==0.2.1
