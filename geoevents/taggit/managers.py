@@ -150,7 +150,7 @@ class _TaggableManager(models.Manager):
         self.model = model
         self.instance = instance
 
-    def get_query_set(self):
+    def get_queryset(self):
         return self.through.tags_for(self.model, self.instance)
 
     def _lookup_kwargs(self):
@@ -192,7 +192,7 @@ class _TaggableManager(models.Manager):
         self.through.objects.filter(**self._lookup_kwargs()).delete()
 
     def most_common(self):
-        return self.get_query_set().annotate(
+        return self.get_queryset().annotate(
             num_times=models.Count(self.through.tag_relname())
         ).order_by('-num_times')
 
