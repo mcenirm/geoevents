@@ -21,8 +21,8 @@ from geoevents.core import disable_for_loaddata, enable_on_object_creation
 from geoevents.maps.models import Map
 from geoevents.notes.models import Note
 from geoevents.operations.managers import ActiveObjects
-from geoevents.taggit.managers import TaggableManager
 from geoevents.timeline.models import TimelineItem
+from taggit.managers import TaggableManager
 from tinymce.models import HTMLField
 
 

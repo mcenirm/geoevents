@@ -220,7 +220,6 @@ INSTALLED_APPS = (
     'geoevents.operations',
     'geoevents.notes',
     'geoevents.feedback',
-    'geoevents.taggit',
     'geoevents.core',
     'geoevents.heartbeat',
     'geoevents.director',
@@ -232,6 +231,7 @@ INSTALLED_APPS = (
     'filer',
     'mptt',
     'easy_thumbnails',
+    'taggit',
 
 )
 
@@ -293,6 +293,7 @@ LOGGING = {
 
 SOUTH_MIGRATION_MODULES = {
     'easy_thumbnails': 'easy_thumbnails.south_migrations',
+    'taggit': 'taggit.south_migrations',
 }
 
 

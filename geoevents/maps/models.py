@@ -6,7 +6,7 @@
 import json
 from django.contrib.gis.db import models
 import django.utils.timezone
-from geoevents.taggit.managers import TaggableManager
+from taggit.managers import TaggableManager
 
 IMAGE_FORMATS = (
     ('image/png', 'image/png'),

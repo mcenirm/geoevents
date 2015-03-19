@@ -7,7 +7,7 @@ from django.core.urlresolvers import reverse_lazy
 from django.db import models
 from django.template.defaultfilters import slugify
 from geoevents.notes.models import Note
-from geoevents.taggit.managers import TaggableManager
+from taggit.managers import TaggableManager
 from tinymce.models import HTMLField
 from django.conf import settings
 
