@@ -1,5 +1,5 @@
 Paver==1.2.4
-Django==1.5.12
+Django==1.6.11
 South==0.8.4
 django_tastypie==0.9.16
 psycopg2==2.4.6
