@@ -1,0 +1,13 @@
+diff --git a/filer/migrations/0001_initial.py b/filer/migrations/0001_initial.py
+index 543e9f5..4f4c926 100644
+--- a/filer/migrations/0001_initial.py
++++ b/filer/migrations/0001_initial.py
+@@ -13,7 +13,7 @@ else:
+     User = get_user_model()
+ 
+ user_orm_label = '%s.%s' % (User._meta.app_label, User._meta.object_name)
+-user_model_label = '%s.%s' % (User._meta.app_label, User._meta.module_name)
++user_model_label = '%s.%s' % (User._meta.app_label, User._meta.model_name)
+ 
+ class Migration(SchemaMigration):
+ 

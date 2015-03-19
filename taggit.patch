@@ -1,0 +1,13 @@
+diff --git a/taggit/managers.py b/taggit/managers.py
+index f83ce44..08f6ccf 100644
+--- a/taggit/managers.py
++++ b/taggit/managers.py
+@@ -29,7 +29,7 @@ except ImportError:
+ 
+ 
+ def _model_name(model):
+-    if VERSION < (1, 7):
++    if VERSION < (1, 6):
+         return model._meta.module_name
+     else:
+         return model._meta.model_name
