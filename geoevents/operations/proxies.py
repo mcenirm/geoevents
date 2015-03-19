@@ -48,7 +48,7 @@ def proxy_to(request, path, target_url):
 
         errorCode = 'Proxy generic exception: ' + traceback.format_exc()
     else:
-        return HttpResponse(content, status=status_code, mimetype=mimetype)
+        return HttpResponse(content, status=status_code, content_type=mimetype)
 
     if errorCode and len(errorCode):
         logger.error(errorCode)

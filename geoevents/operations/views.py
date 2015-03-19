@@ -178,7 +178,7 @@ class KMLReponse(DetailView):
     def render_to_response(self, context, **response_kwargs):
         return super(KMLReponse, self).render_to_response(
             context,
-            mimetype='application/vnd.google-earth.kml+xml',
+            content_type='application/vnd.google-earth.kml+xml',
             **response_kwargs)
 
 
