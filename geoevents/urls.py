@@ -43,4 +43,5 @@ urlpatterns = patterns(
     url(r'^tinymce/', include('tinymce.urls')),
     url(r'^timeline/', include('geoevents.timeline.urls')),
     url(r'^director/', include('geoevents.director.urls')),
+    url(r'^heartbeat/', include('geoevents.heartbeat.urls')),
 )
