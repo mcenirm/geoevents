@@ -165,7 +165,7 @@ ROOT_URLCONF = 'geoevents.urls'
 WSGI_APPLICATION = 'geoevents.wsgi.application'
 
 TEMPLATE_DIRS = (
-    os.path.join(SITE_ROOT, 'templates')
+    os.path.join(SITE_ROOT, 'templates'),
 )
 
 FILER_STORAGES = {
