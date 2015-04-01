@@ -5,7 +5,6 @@
 
 import json
 from django.contrib.gis.db import models
-from geoevents.taggit.managers import TaggableManager
 from datetime import datetime
 
 IMAGE_FORMATS = (
@@ -82,7 +81,6 @@ class Layer(models.Model):
                              help_text='The layer name from the GetCapabilities document. Many ESRI servers have just "0" or "1" for layers names. Layer names can sometimes be comma-separated ("0,1,2"), and are not needed for data layers such as KML, GeoRSS, GeoJSON..')
     image_format = models.CharField(null=True, blank=True, choices=IMAGE_FORMATS, max_length=75,
                                     help_text='The MIME type of the image format to use for tiles on WMS layers (image/png, image/jpeg image/gif...). Double check that the server exposes this exactly - some servers push png instead of image/png.')
-    tags = TaggableManager(blank=True, help_text='Tags to help search for layers')
     description = models.TextField(max_length=800, null=True, blank=True,
                                    help_text='Text to show in layer chooser, please be descriptive - this will soon be searchable')
     attribution = models.CharField(max_length=200, null=True, blank=True,
@@ -142,12 +140,6 @@ class Layer(models.Model):
     def __unicode__(self):
         return '{0}'.format(self.name)
 
-    def tags_as_list(self):
-        """
-        Returns the layer's tags.
-        """
-        return self.tags.all()
-
     def get_layer_urls(self):
         """
         Returns a list of urls for the layer.
@@ -197,7 +189,6 @@ class Map(models.Model):
                                  help_text='Sets the center y coordinate of the map.  Maps on event pages default to the location of the event.')
     created = models.DateTimeField(auto_now_add=True)
     last_updated = models.DateTimeField(auto_now_add=True)
-    tags = TaggableManager(blank=True)
 
     def __unicode__(self):
         return '{0}'.format(self.title)
@@ -247,7 +238,6 @@ class Map(models.Model):
                 "fieldsToShow": map_layer.layer.fields_to_show,
                 "description": map_layer.layer.description,
                 "downloadableLink": map_layer.layer.downloadableLink,
-                "tags": [n.name for n in map_layer.layer.tags_as_list()],
                 "styles": map_layer.layer.styles,
             }
 

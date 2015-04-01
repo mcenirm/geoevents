@@ -20,7 +20,6 @@ from geoevents.core import disable_for_loaddata, enable_on_object_creation
 from geoevents.maps.models import Map
 from geoevents.notes.models import Note
 from geoevents.operations.managers import ActiveObjects
-from geoevents.taggit.managers import TaggableManager
 from geoevents.timeline.models import TimelineItem
 from tinymce.models import HTMLField
 
@@ -122,7 +121,6 @@ class Service(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     last_updated = models.DateTimeField(auto_now=True, null=True)
     status = models.IntegerField(max_length=1, choices=[(1, 'Active'), (0, 'Inactive')], default=1)
-    tags = TaggableManager()
 
     def __unicode__(self):
         return self.name

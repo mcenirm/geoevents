@@ -220,7 +220,6 @@ INSTALLED_APPS = (
     'geoevents.operations',
     'geoevents.notes',
     'geoevents.feedback',
-    'geoevents.taggit',
     'geoevents.core',
     'geoevents.heartbeat',
     'geoevents.director',

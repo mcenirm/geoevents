@@ -7,7 +7,6 @@ from django.core.urlresolvers import reverse_lazy
 from django.db import models
 from django.template.defaultfilters import slugify
 from geoevents.notes.models import Note
-from geoevents.taggit.managers import TaggableManager
 from tinymce.models import HTMLField
 from django.conf import settings
 
@@ -88,7 +87,6 @@ class Article(models.Model):
     created = models.DateTimeField(verbose_name="Date Created", auto_now_add=True)
     content = HTMLField(blank=True, null=True)
     last_updated_by = models.ForeignKey(User, null=True, blank=True)
-    tags = TaggableManager(blank=True)
     slug = models.CharField(max_length=200, null=True, blank=True)
 
     def __unicode__(self):
@@ -99,9 +97,6 @@ class Article(models.Model):
 
     def get_edit_url(self):
         return reverse_lazy('feedback-manage-article', args=[self.slug])
-
-    def get_tags(self):
-        return [tag.name for tag in self.tags.all()]
 
     def notes(self):
         """
