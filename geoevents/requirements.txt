@@ -1,5 +1,5 @@
 Paver==1.2.1
-Django==1.5.4
+Django~=1.8.0
 Markdown==2.2.1
 South==0.8.2
 django_tastypie==0.9.12
