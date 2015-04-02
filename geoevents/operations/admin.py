@@ -2,19 +2,19 @@
 # is subject to the Rights in Technical Data-Noncommercial Items clause at DFARS 252.227-7013 (FEB 2012)
 
 from datetime import datetime
-from django.contrib.contenttypes import generic
+from django.contrib.contenttypes.admin import GenericTabularInline
 from django.contrib.gis import admin
 from geoevents.notes.models import Note
 from geoevents.operations.models import Agency, Event, Deployment, LessonLearned, LessonLearnedCategory, Service, ServiceType, SitRep, GeoWidget
 from geoevents.timeline.models import TimelineItem
 
 
-class TimelineItemInline(generic.GenericTabularInline):
+class TimelineItemInline(GenericTabularInline):
     model = TimelineItem
     extra = 1
 
 
-class NoteInline(generic.GenericTabularInline):
+class NoteInline(GenericTabularInline):
     model = Note
     fields = (('title', 'public', 'owner'), 'content',)
     extra = 1

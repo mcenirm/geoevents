@@ -3,7 +3,7 @@
 
 from datetime import datetime
 from django.contrib.contenttypes.models import ContentType
-from django.contrib.contenttypes import generic
+from django.contrib.contenttypes.fields import GenericForeignKey
 from django.db import models
 from geoevents.heartbeat.test_cases import tests, get_test
 from geoevents.notes.models import Note
@@ -44,7 +44,7 @@ class Test(Base):
     table = models.ForeignKey(ContentType, null=True, blank=True,
                               help_text='Use this to pull a link dynamically from another table.')
     object_id = models.PositiveIntegerField(null=True, blank=True, help_text='The record id from another table.')
-    content_object = generic.GenericForeignKey('table', 'object_id')
+    content_object = GenericForeignKey('table', 'object_id')
     type_of_test = models.CharField(max_length=75, choices=TESTS)
     urlorfield = models.CharField(max_length=1000, verbose_name='Url or Field Name',
                                   help_text='A URL or field name containing the url in the related object')

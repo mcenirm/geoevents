@@ -1,14 +1,14 @@
 # This technical data was produced for the U. S. Government under Contract No. W15P7T-13-C-F600, and
 # is subject to the Rights in Technical Data-Noncommercial Items clause at DFARS 252.227-7013 (FEB 2012)
 
-from django.contrib.contenttypes import generic
+from django.contrib.contenttypes.admin import GenericTabularInline
 from django.contrib.gis import admin
 from geoevents.maps.models import Layer, Map, MapLayer
 from geoevents.notes.models import Note
 from geoevents.operations.models import Event
 
 
-class NoteInline(generic.GenericTabularInline):
+class NoteInline(GenericTabularInline):
     model = Note
     fields = (('title', 'public', 'owner'), 'content',)
     extra = 1

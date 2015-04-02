@@ -3,7 +3,7 @@
 
 from django.db import models
 from django.contrib.contenttypes.models import ContentType
-from django.contrib.contenttypes import generic
+from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from tinymce.models import HTMLField
@@ -24,7 +24,7 @@ class Note(models.Model):
     last_updated = models.DateTimeField(auto_now=True)
     content_type = models.ForeignKey(ContentType)
     object_id = models.PositiveIntegerField()
-    content_object = generic.GenericForeignKey('content_type', 'object_id')
+    content_object = GenericForeignKey('content_type', 'object_id')
 
     def __unicode__(self):
         return u'[{0}] {1}'.format(self.owner.username, self.title)
