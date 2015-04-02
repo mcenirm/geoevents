@@ -404,8 +404,8 @@ class ProgramGroup(models.Model):
     details = models.TextField(help_text="Link description", blank=True, null=True)
     url = models.TextField(help_text="Link to another page when clicked", blank=True, null=True)
 
-    related_programs = models.ManyToManyField(ProgramInfo, help_text="Programs within the group", null=True, blank=True)
-    related_links = models.ManyToManyField(Link, help_text="Related Links", null=True, blank=True)
+    related_programs = models.ManyToManyField(ProgramInfo, help_text="Programs within the group", blank=True)
+    related_links = models.ManyToManyField(Link, help_text="Related Links", blank=True)
 
     created = models.DateTimeField(auto_now_add=True, verbose_name="Date Created")
     last_updated = models.DateTimeField(auto_now=True, null=True)
@@ -477,10 +477,10 @@ class DirectorDashboard(models.Model):
                             choices=[('Portal', 'Portal'), ('Widget', 'Widget'), ('Page', 'Page')], default='Portal')
 
     page_widgets = models.ManyToManyField(PageWidget, through='DashboardWidgets',
-                                          help_text="List all sections of page that should show", null=True, blank=True,
+                                          help_text="List all sections of page that should show", blank=True,
                                           verbose_name="pagewidgets")
-    related_program_groups = models.ManyToManyField(ProgramGroup, help_text="Related Programs", null=True, blank=True)
-    related_links = models.ManyToManyField(Link, help_text="Related Links", null=True, blank=True)
+    related_program_groups = models.ManyToManyField(ProgramGroup, help_text="Related Programs", blank=True)
+    related_links = models.ManyToManyField(Link, help_text="Related Links", blank=True)
 
     created = models.DateTimeField(auto_now_add=True, verbose_name="Date Created")
     last_updated = models.DateTimeField(auto_now=True, null=True)
@@ -488,7 +488,7 @@ class DirectorDashboard(models.Model):
     tracking_code = models.CharField(help_text="Web Analytics Code, if blank then use site default", max_length=250,
                                      null=True, blank=True)
 
-    director_billets = models.ManyToManyField(Billet, help_text="Billets for this dashboard", null=True, blank=True)
+    director_billets = models.ManyToManyField(Billet, help_text="Billets for this dashboard", blank=True)
     active_objects = ActiveObjects()
 
     def __unicode__(self):
@@ -674,10 +674,10 @@ class Report(RatedBase):
     tags = models.CharField(help_text="List of comma-separated tags", max_length=75, null=True, blank=True)
     public = models.BooleanField(default=True, help_text="Allow everyone to read this?", blank=True)
 
-    related_boards = models.ManyToManyField(DirectorDashboard, help_text="Related Boards", null=True, blank=True)
-    related_programs = models.ManyToManyField(ProgramInfo, help_text="Related Programs", null=True, blank=True)
-    related_links = models.ManyToManyField(Link, help_text="Related Links", null=True, blank=True)
-    related_actions = models.ManyToManyField(Actions, help_text="Related Actions", null=True, blank=True)
+    related_boards = models.ManyToManyField(DirectorDashboard, help_text="Related Boards", blank=True)
+    related_programs = models.ManyToManyField(ProgramInfo, help_text="Related Programs", blank=True)
+    related_links = models.ManyToManyField(Link, help_text="Related Links", blank=True)
+    related_actions = models.ManyToManyField(Actions, help_text="Related Actions", blank=True)
 
 
     def __unicode__(self):

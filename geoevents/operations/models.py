@@ -293,11 +293,11 @@ class Event(models.Model):
     rfi_generator_id = models.PositiveIntegerField(blank=True, null=True,
                                                    help_text="RFI Generator ID for this incident. Leave empty for none.")
 
-    agencies = models.ManyToManyField(Agency, null=True, blank=True,
+    agencies = models.ManyToManyField(Agency, blank=True,
                                       help_text="Adds each agencies logo to the event page.")
-    services = models.ManyToManyField(Service, null=True, blank=True,
+    services = models.ManyToManyField(Service, blank=True,
                                       help_text="Related Resources to show on side of page", verbose_name="resources")
-    geowidgets = models.ManyToManyField(GeoWidget, null=True, blank=True, help_text="Related GeoWidgets",
+    geowidgets = models.ManyToManyField(GeoWidget, blank=True, help_text="Related GeoWidgets",
                                         verbose_name="geowidgets")
     filedropoff_path = models.CharField(max_length=200, null=True, blank=True,
                                         help_text="Advanced - Path to folder within AjaxExplorer Shared directory of files to show - must be in /cache/ajaxplorer/files")
@@ -452,7 +452,7 @@ class Deployment(models.Model):
     created = models.DateTimeField(verbose_name="Date Created", auto_now_add=True)
     closed = models.DateTimeField(verbose_name="Date Closed", blank=True, null=True)
     event = models.ForeignKey(Event)
-    deployers = models.ManyToManyField(User, max_length=250, blank=True, null=True)
+    deployers = models.ManyToManyField(User, max_length=250, blank=True)
     description = HTMLField(max_length=1000, blank=True, null=True)
     status = models.IntegerField(choices=[(1, 'Active'), (0, 'Inactive')], default=1)
     latitude = models.FloatField()
