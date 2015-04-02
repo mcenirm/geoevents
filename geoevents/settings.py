@@ -225,7 +225,6 @@ INSTALLED_APPS = (
     'geoevents.director',
     'tinymce',
     'geoevents.timeline',
-    'south',
     'compressor',
     'geoevents.classification',
     'filer',
