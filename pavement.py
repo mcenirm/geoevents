@@ -23,10 +23,9 @@ def install_dependencies():
 
 
 @task
-def sync():
-    """ Runs the syncdb process with migrations """
-    sh("python manage.py syncdb --noinput")
-    sh("python manage.py migrate --all")
+def migrate():
+    """ Runs migrations """
+    sh("python manage.py migrate")
 
 
 @cmdopts([
@@ -54,7 +53,7 @@ def stop_django():
 
 
 @needs(['stop_django',
-        'sync',
+        'migrate',
         'delayed_fixtures',
         'start_django'])
 def start():

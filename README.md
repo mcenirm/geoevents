@@ -82,7 +82,7 @@ Mac OSX Development Build Instructions (about 1 hour total)::
     paver install_dependencies
     paver create_db
     paver create_db_user
-    paver sync
+    paver migrate
     python manage.py createsuperuser
 
     paver start
