@@ -16,7 +16,7 @@ TEST_RESULT_CHOICES = [(n, n) for n in sorted(['OK', 'ISSUE'])]
 class Base(models.Model):
     created = models.DateTimeField(auto_now_add=True, verbose_name="Date Created")
     last_updated = models.DateTimeField(auto_now=True, null=True)
-    status = models.IntegerField(max_length=1, choices=[(1, 'Active'), (0, 'Inactive')], default=1, blank=True,
+    status = models.IntegerField(choices=[(1, 'Active'), (0, 'Inactive')], default=1, blank=True,
                                  null=True)
     closed = models.DateTimeField(verbose_name="Date Closed", blank=True, null=True)
 

@@ -68,7 +68,7 @@ user_filter_models = [('Earthquake', 'Earthquake')]
 class Base(models.Model):
     created = models.DateTimeField(auto_now_add=True, verbose_name="Date Created")
     last_updated = models.DateTimeField(auto_now=True, null=True)
-    status = models.IntegerField(max_length=1, choices=[(1, 'Active'), (0, 'Inactive')], default=1, blank=True,
+    status = models.IntegerField(choices=[(1, 'Active'), (0, 'Inactive')], default=1, blank=True,
                                  null=True)
     closed = models.DateTimeField(verbose_name="Date Closed", blank=True, null=True)
 
@@ -95,7 +95,7 @@ class ServiceType(models.Model):
     name = models.CharField(max_length=15)
     description = HTMLField(max_length=800, blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True)
-    status = models.IntegerField(max_length=1, choices=[(1, 'Active'), (0, 'Inactive')], default=1)
+    status = models.IntegerField(choices=[(1, 'Active'), (0, 'Inactive')], default=1)
 
     def __unicode__(self):
         return self.name
@@ -120,7 +120,7 @@ class Service(models.Model):
     url = models.URLField(max_length=600)
     created = models.DateTimeField(auto_now_add=True)
     last_updated = models.DateTimeField(auto_now=True, null=True)
-    status = models.IntegerField(max_length=1, choices=[(1, 'Active'), (0, 'Inactive')], default=1)
+    status = models.IntegerField(choices=[(1, 'Active'), (0, 'Inactive')], default=1)
 
     def __unicode__(self):
         return self.name
@@ -271,7 +271,7 @@ class Event(models.Model):
     tags = models.CharField(max_length=75, null=True, blank=True)
     event_type = models.CharField(max_length=50, choices=DISASTER_TYPES)
     posture = models.CharField(max_length=25, choices=POSTURE_CHOICES, default='Monitoring')
-    status = models.IntegerField(max_length=1, choices=[(1, 'Active'), (0, 'Inactive')], default=1)
+    status = models.IntegerField(choices=[(1, 'Active'), (0, 'Inactive')], default=1)
     event_location = models.CharField(max_length=200, null=True,
                                       help_text="A human-friendly description of the location (ie Japan, or Pacific Ocean)")
     closed = models.DateTimeField(verbose_name="Date Event is marked 'Closed', or no longer active", blank=True,
@@ -454,7 +454,7 @@ class Deployment(models.Model):
     event = models.ForeignKey(Event)
     deployers = models.ManyToManyField(User, max_length=250, blank=True, null=True)
     description = HTMLField(max_length=1000, blank=True, null=True)
-    status = models.IntegerField(max_length=1, choices=[(1, 'Active'), (0, 'Inactive')], default=1)
+    status = models.IntegerField(choices=[(1, 'Active'), (0, 'Inactive')], default=1)
     latitude = models.FloatField()
     longitude = models.FloatField()
     point = models.PointField(null=True, blank=True)

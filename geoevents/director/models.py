@@ -15,7 +15,7 @@ from .managers import ActiveObjects
 class RatedBase(models.Model):
     created = models.DateTimeField(auto_now_add=True, verbose_name="Date Created")
     last_updated = models.DateTimeField(auto_now=True, null=True)
-    rating_count = models.IntegerField(max_length=1000, default=1, help_text="Importance Level - Number of Votes")
+    rating_count = models.IntegerField(default=1, help_text="Importance Level - Number of Votes")
 
     def notes(self):
         note_type = ContentType.objects.get_for_model(self)
@@ -471,7 +471,7 @@ class DirectorDashboard(models.Model):
     owner = models.ForeignKey(User, help_text="Administrative Owner", max_length=250, blank=True, null=True)
     site_icon = models.CharField(help_text="URL to Icon file, blank for none", max_length=200, verbose_name='Site Icon',
                                  null=True, blank=True)
-    status = models.IntegerField(help_text="Active to show on lookup list + Search", max_length=1,
+    status = models.IntegerField(help_text="Active to show on lookup list + Search",
                                  choices=[(1, 'Active'), (0, 'Inactive')], default=1)
     type = models.CharField(help_text="Portal to render as dashboard page", max_length=10,
                             choices=[('Portal', 'Portal'), ('Widget', 'Widget'), ('Page', 'Page')], default='Portal')
@@ -580,10 +580,10 @@ class DashboardWidgets(models.Model):
     dashboard = models.ForeignKey(DirectorDashboard)
     widget = models.ForeignKey(PageWidget)
     order = models.IntegerField(help_text="Order on page")
-    width = models.IntegerField(help_text="Columns: 12 is max, 6 is normal", max_length=2,
+    width = models.IntegerField(help_text="Columns: 12 is max, 6 is normal",
                                 choices=[(2, '2 - Small'), (3, '3 - Half'), (4, '4 - Third'), (6, '6 - Normal'),
                                          (12, '12 - Full')], default=6)
-    height = models.IntegerField(help_text="Pixels in height", max_length=3,
+    height = models.IntegerField(help_text="Pixels in height",
                                  choices=[(65, '65 - Tiny'), (100, '100 - Small'), (150, '150 - Small'),
                                           (200, '200 - Med'), (250, '250 - Standard'), (300, '300 - Big'),
                                           (350, '350 - Big'), (400, '400 - Bigger'), (500, '500 - Huge')], default=250)
@@ -606,7 +606,7 @@ class Actions(RatedBase):
     date_final_due = models.DateTimeField(blank=True, null=True)
     date_closed = models.DateTimeField(blank=True, null=True)
     assigned_to = models.CharField(help_text="Organizations Responsible", max_length=250, blank=True, null=True)
-    status = models.IntegerField(help_text="Status of Action", max_length=1,
+    status = models.IntegerField(help_text="Status of Action",
                                  choices=[(2, 'Open'), (1, 'Pending Closed'), (0, 'Closed')], default=2)
     action_notes = models.TextField(blank=True, null=True,
                                     help_text="Detailed notes describing the result of this action, the format it should be in, and any procedural details")
@@ -615,7 +615,7 @@ class Actions(RatedBase):
                                       help_text="Detailed status of tasker, not describing content of result")
 
     category = models.CharField(help_text="Tasker Category (e.g. 'AEG Taskers')", max_length=100, blank=True, null=True)
-    hotness = models.IntegerField(help_text="How Hot? 0-5", max_length=2, blank=True, null=True, default=0)
+    hotness = models.IntegerField(help_text="How Hot? 0-5", blank=True, null=True, default=0)
 
     owning_organization = models.ForeignKey(DirectorDashboard,
                                             help_text="Primary organization this is being tracked under", null=True,
