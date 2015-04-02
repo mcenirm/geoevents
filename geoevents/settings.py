@@ -168,43 +168,6 @@ TEMPLATE_DIRS = (
     os.path.join(SITE_ROOT, 'templates'),
 )
 
-FILER_STORAGES = {
-    'public': {
-        'main': {
-            'ENGINE': 'filer.storage.PublicFileSystemStorage',
-            'OPTIONS': {
-                'location': os.path.join(SITE_ROOT, 'static/filer'),
-                'base_url': '/static/filer',
-            },
-            'UPLOAD_TO': 'filer.utils.generate_filename.by_date',
-        },
-        'thumbnails': {
-            'ENGINE': 'filer.storage.PublicFileSystemStorage',
-            'OPTIONS': {
-                'location': os.path.join(SITE_ROOT, 'static/filer'),
-                'base_url': '/static/filer/filer_public_thumbnails',
-            },
-        },
-    },
-    'private': {
-        'main': {
-            'ENGINE': 'filer.storage.PrivateFileSystemStorage',
-            'OPTIONS': {
-                'location': '/path/to/smedia/filer',
-                'base_url': '/smedia/filer/',
-            },
-            'UPLOAD_TO': 'filer.utils.generate_filename.by_date',
-        },
-        'thumbnails': {
-            'ENGINE': 'filer.storage.PrivateFileSystemStorage',
-            'OPTIONS': {
-                'location': '/path/to/smedia/filer_thumbnails',
-                'base_url': '/smedia/filer_thumbnails/',
-            },
-        },
-    },
-}
-
 INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -227,7 +190,6 @@ INSTALLED_APPS = (
     'geoevents.timeline',
     'compressor',
     'geoevents.classification',
-    'filer',
 
 )
 
