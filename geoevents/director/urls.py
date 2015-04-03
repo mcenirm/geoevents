@@ -9,7 +9,7 @@ from django.views.generic.edit import DeleteView, UpdateView
 from .views import *
 from .models import Report
 
-urlpatterns = patterns('',
+urlpatterns = [
                        url(r'^$', DirectorDashboardViewList.as_view(), name='director-dashboards'),
                        url(r'^board/$', DirectorDashboardViewList.as_view(), name='director-dashboards'),
                        url(r'^board/(?P<pk>\d+)/$', DirectorDashboardView,
@@ -102,4 +102,4 @@ urlpatterns = patterns('',
                            ), name='billets-delete-report-id'),
 
 
-)
+]

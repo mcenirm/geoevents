@@ -13,7 +13,7 @@ from django.views.generic import ListView, DetailView
 
 #permission_required('operations.change_lessonlearned', reverse_lazy('home'))(update_object)
 
-urlpatterns = patterns('',
+urlpatterns = [
                        url(r'^$', ListView.as_view(queryset=Note.objects.filter(public=1),
                                                    template_name='note-list.html',
                                                    paginate_by=25,
@@ -51,4 +51,4 @@ urlpatterns = patterns('',
                                                                                                              template_name='generic-delete.html',
                                                                                                              success_url=reverse_lazy('notes-view-notes'))
                            ), name='notes-delete-note-id'),
-)
+]

@@ -5,6 +5,6 @@ from django.conf.urls import patterns, url
 from geoevents.heartbeat.views import StatusView
 
 
-urlpatterns = patterns('',
+urlpatterns = [
                        url(r'^$', StatusView.as_view(), name='heartbeat-view-status'),
-)
+]

@@ -14,7 +14,7 @@ from geoevents.operations.views import CreateService, EventsDashboard, EventPage
 from geoevents.operations.proxies import proxy_to
 
 
-urlpatterns = patterns('',
+urlpatterns = [
                        url(r'^activeEvents/$', EventsDashboard.as_view(), name='active-incidents'),
                        url(r'^incidents/(?P<pk>\d+)/$', EventPage.as_view(), name='operations-view-incident'),
                        url(r'^incidents/(?P<pk>\d+)/(?P<slug>[\w\d\-]+)/$', EventPage.as_view(),
@@ -185,6 +185,6 @@ urlpatterns = patterns('',
 
                        url(r'^incidents/$', RedirectView.as_view(url=reverse_lazy('active-incidents')), name='home'),
 
-)
+]
 
 

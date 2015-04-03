@@ -8,7 +8,7 @@ from geoevents.feedback.views import ArticleFormView, ArticleCreateView, Feedbac
     ArticleDetailView, FAQsView
 
 
-urlpatterns = patterns('',
+urlpatterns = [
                        url(r'^add/$', FeedbackCreateView.as_view(), name='add-feedback'),
                        url(r'^success/$', TemplateView.as_view(template_name='feedback-submitted.html'),
                            name='feedback-success'),
@@ -23,5 +23,5 @@ urlpatterns = patterns('',
                        url(r'^articles/(?P<slug>[\d\w\-]+)/$', ArticleDetailView.as_view(),
                            name='feedback-view-article'),
 
-)
+]
 

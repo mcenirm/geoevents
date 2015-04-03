@@ -14,8 +14,7 @@ from geoevents.operations.views import view_services
 
 admin.autodiscover()
 
-urlpatterns = patterns(
-    '',
+urlpatterns = [
     url(r'^/?', include('geoevents.operations.urls')),
     url(r'^/?$', RedirectView.as_view(url=reverse_lazy('active-incidents')), name='home'),
     url(r'^service-type/(?P<name>[\w]+)/$', service_type, name='view-service-type'),
@@ -31,4 +30,4 @@ urlpatterns = patterns(
     url(r'^tinymce/', include('tinymce.urls')),
     url(r'^timeline/', include('geoevents.timeline.urls')),
     url(r'^director/', include('geoevents.director.urls')),
-)
+]
