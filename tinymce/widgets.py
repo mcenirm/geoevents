@@ -17,7 +17,7 @@ except ImportError:
     from django.forms.util import smart_unicode
 from django.utils.html import escape
 import json
-from django.utils.datastructures import SortedDict
+from collections import OrderedDict
 from django.utils.safestring import mark_safe
 from django.utils.translation import get_language, ugettext as _
 import tinymce.settings
@@ -146,7 +146,7 @@ def get_language_config(content_language=None):
     config = {}
     config['language'] = language
 
-    lang_names = SortedDict()
+    lang_names = OrderedDict()
     for lang, name in settings.LANGUAGES:
         if lang[:2] not in lang_names: lang_names[lang[:2]] = []
         lang_names[lang[:2]].append(_(name))

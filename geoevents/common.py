@@ -5,14 +5,14 @@ from datetime import datetime
 from django.conf import settings
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.core.urlresolvers import reverse_lazy
-from django.utils.datastructures import SortedDict
+from collections import OrderedDict
 from geoevents.operations.models import Event
 import re
 
 
 def menu(active=None, request_path=None):
     def order_dict(d, key):
-        return SortedDict(sorted(d.items(), key=key))
+        return OrderedDict(sorted(d.items(), key=key))
 
     sort_key = lambda t: t[1].get('index', None)
 
