@@ -8,7 +8,7 @@ from geoevents.notes.models import Note
 class NoteForm(ModelForm):
     class Meta:
         model = Note
-        exclude = ('owner')
+        exclude = ['owner']
 
 
 class NoteFormMinimal(ModelForm):

@@ -86,7 +86,7 @@ class SitRepForm(StyledModelForm):
         ## Filter event dropdown to show active events
 
     class Meta:
-        exclude = ('date_closed')
+        exclude = ['date_closed']
         fields = ['name', 'content', 'event']
         model = SitRep
         widgets = {'name': forms.TextInput(attrs={'placeholder': 'Title of SitRep'}),
