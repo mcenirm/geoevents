@@ -9,7 +9,7 @@ from geoevents.feedback.models import Article, Feedback
 class ArticleForm(StyledModelForm):
     class Meta:
         model = Article
-        fields = ('title', 'category', 'content', 'tags', 'common_issue', 'active')
+        fields = ('title', 'category', 'content', 'common_issue', 'active')
 
 
 class FeedbackForm(StyledModelForm):
