@@ -13,7 +13,7 @@ from django.template import RequestContext
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, DeleteView
 from django.views.decorators.csrf import csrf_exempt, csrf_protect
-from django.db.models.loading import get_model
+from django.apps import apps
 from .models import *
 from .forms import *
 from datetime import datetime
@@ -26,7 +26,7 @@ logger = logging.getLogger(__name__)
 
 def SocialRate(request, model, pk):
     rating = str(request.POST.get("rating", ""))
-    model_obj = get_model('director', model)
+    model_obj = apps.get_model('director', model)
 
     try:
         report = get_object_or_404(model_obj, id=pk)
