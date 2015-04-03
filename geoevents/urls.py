@@ -6,24 +6,9 @@ from django.contrib import admin
 from django.core.urlresolvers import reverse_lazy
 from django.views.generic import RedirectView
 from geoevents.views import UserPermsUpdate
-from geoevents.core.api import UserResource
-from geoevents.maps.api import LayerResource, MapResource, MapLayerResource
-from geoevents.operations.api import EventResource, EventTypesResource, LessonLearnedResource
-from geoevents.timeline.api import TimelineItemResource
 from geoevents.views import UserPermsUpdate
-from tastypie.api import Api
 
 admin.autodiscover()
-
-v1_api = Api(api_name='v1')
-v1_api.register(EventResource())
-v1_api.register(LessonLearnedResource())
-v1_api.register(LayerResource())
-v1_api.register(MapLayerResource())
-v1_api.register(MapResource())
-v1_api.register(TimelineItemResource())
-v1_api.register(UserResource())
-v1_api.register(EventTypesResource())
 
 urlpatterns = patterns(
     '',
@@ -36,7 +21,6 @@ urlpatterns = patterns(
     url(r'^accounts/login/$', 'django.contrib.auth.views.login', name='login'),
     url(r'^accounts/logout/$', 'geoevents.views.logout', name='logout'),
     url(r'^users/(?P<username>[\w\d\.@+-_\'\s]+)/$', UserPermsUpdate.as_view(), name='user-profile'),
-    url(r'^api/', include(v1_api.urls), name='api-root'),
     url(r'^notes/', include('geoevents.notes.urls')),
     url(r'^services/$', 'geoevents.operations.views.view_services', name='operations-view-services'),
     url(r'^feedback/', include('geoevents.feedback.urls')),

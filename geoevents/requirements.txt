@@ -1,7 +1,6 @@
 Paver==1.2.1
 Django~=1.8.0
 django-markdown2~=0.2.1
-django_tastypie==0.9.12
 psycopg2==2.4.5
 wsgiref==0.1.2
 django-compressor==1.3
