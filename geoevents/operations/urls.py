@@ -10,7 +10,7 @@ from geoevents.core.views import CreateViewWithMessages, UpdateViewWithMessages
 from geoevents.operations.forms import DeploymentForm, NewDeploymentForm, EventForm, LessonLearnedForm, ServiceForm, SitRepForm
 from geoevents.operations.models import Deployment, Event, LessonLearned, SitRep, Service
 from geoevents.operations.views import CreateService, EventsDashboard, EventPage, NewDeploymentFromIncident, \
-    SitRepCreateView, MustBeOwnerDeleteView, ServiceLists, KMLReponse, DeploymentView
+    SitRepCreateView, MustBeOwnerDeleteView, ServiceLists, KMLReponse, DeploymentView, view_service
 from geoevents.operations.proxies import proxy_to
 
 
@@ -149,7 +149,7 @@ urlpatterns = patterns('',
                            name='operations-delete-sitrep-pk'),
 
                        ## Services
-                       url(r'^services/(?P<pk>\d+)/$', 'geoevents.operations.views.view_service',
+                       url(r'^services/(?P<pk>\d+)/$', view_service,
                            name='operations-view-service'),
 
                        url(r'^services/manage/(?P<pk>\d+)/$',
