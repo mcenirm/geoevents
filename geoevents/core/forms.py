@@ -2,9 +2,9 @@
 # is subject to the Rights in Technical Data-Noncommercial Items clause at DFARS 252.227-7013 (FEB 2012)
 
 from django import forms
-from django.forms.widgets import RadioInput, RadioSelect, CheckboxInput, CheckboxSelectMultiple
+from django.forms.widgets import RadioChoiceInput, RadioSelect, CheckboxInput, CheckboxSelectMultiple
 
-no_style = [RadioInput, RadioSelect, CheckboxInput, CheckboxSelectMultiple]
+no_style = [RadioChoiceInput, RadioSelect, CheckboxInput, CheckboxSelectMultiple]
 
 
 class StyledModelForm(forms.ModelForm):
