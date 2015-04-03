@@ -26,3 +26,23 @@ class ActionForm(ModelForm):
 class BilletForm(ModelForm):
     class Meta:
         model = Billet
+        fields = [
+            'name',
+            'date_open',
+            'date_advertised',
+            'date_filled',
+            'date_start',
+            'date_expires',
+            'date_vacant',
+            'date_extension',
+            'date_review',
+            'date_selected',
+            'dept',
+            'org',
+            'status',
+            'band_level',
+            'selectee',
+            'comments',
+            'aon_id',
+            'tags',
+        ]
