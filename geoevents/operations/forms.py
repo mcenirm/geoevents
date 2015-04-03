@@ -41,6 +41,13 @@ class ServiceForm(StyledModelForm):
 
     class Meta:
         model = Service
+        fields = [
+            'name',
+            'service_type',
+            'description',
+            'url',
+            'status',
+        ]
 
 
 class LessonLearnedBasicForm(forms.ModelForm):
