@@ -16,7 +16,7 @@ admin.autodiscover()
 
 urlpatterns = [
     url(r'^/?', include('geoevents.operations.urls')),
-    url(r'^/?$', RedirectView.as_view(url=reverse_lazy('active-incidents')), name='home'),
+    url(r'^/?$', RedirectView.as_view(url=reverse_lazy('active-incidents'), permanent=True), name='home'),
     url(r'^service-type/(?P<name>[\w]+)/$', service_type, name='view-service-type'),
     url(r'^service-types/$', service_types, name='view-service-types'),
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),

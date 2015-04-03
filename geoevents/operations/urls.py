@@ -183,7 +183,7 @@ urlpatterns = [
                            name='operations-view-services'),
                        url(r'^proxy/(?P<path>.*)$', proxy_to, {'target_url': ''}),
 
-                       url(r'^incidents/$', RedirectView.as_view(url=reverse_lazy('active-incidents')), name='home'),
+                       url(r'^incidents/$', RedirectView.as_view(url=reverse_lazy('active-incidents'), permanent=True), name='home'),
 
 ]
 
